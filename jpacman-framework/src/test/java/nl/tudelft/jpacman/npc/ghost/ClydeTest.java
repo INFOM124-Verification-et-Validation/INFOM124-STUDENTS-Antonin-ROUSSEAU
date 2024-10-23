@@ -7,6 +7,8 @@ import nl.tudelft.jpacman.sprite.PacManSprites;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -88,5 +90,19 @@ class ClydeTest {
         newPlayer.setDirection(Direction.EAST);
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertThat(clyde.nextAiMove()).isNotIn(Direction.WEST);
+    }
+
+    @Test
+    void testNextAiMoveAvoidObstacle() {
+        char[][] map = {"####".toCharArray(),
+                        "#PC#".toCharArray(),
+                        "## #".toCharArray(),
+                        "####".toCharArray()};
+        Level level = parser.parseMap(map);
+        Player newPlayer = players.createPacMan();
+        level.registerPlayer(newPlayer);
+        newPlayer.setDirection(Direction.EAST);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clyde.nextAiMove()).isIn(Optional.ofNullable(Direction.SOUTH));
     }
 }
