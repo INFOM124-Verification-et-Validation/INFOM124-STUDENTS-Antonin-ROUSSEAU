@@ -31,10 +31,10 @@ class ClydeTest {
     }
 
     @Test
-    void testNextAiMoveGetCloser() {
+    void testNextAiMoveAtLimitGetCloser() {
         char[][] map = {"#############".toCharArray(),
-                        "#          C#".toCharArray(),
-                        "#P          #".toCharArray(),
+                        "#           #".toCharArray(),
+                        "#P        C #".toCharArray(),
                         "#           #".toCharArray(),
                         "#############".toCharArray()};
         Level level = parser.parseMap(map);
@@ -43,5 +43,50 @@ class ClydeTest {
         newPlayer.setDirection(Direction.EAST);
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertThat(clyde.nextAiMove()).isNotIn(Direction.NORTH, Direction.EAST);
+    }
+
+    @Test
+    void testNextAiMoveAtLimitGetFarther() {
+        char[][] map = {"#############".toCharArray(),
+                        "#           #".toCharArray(),
+                        "#P       C  #".toCharArray(),
+                        "#           #".toCharArray(),
+                        "#############".toCharArray()};
+        Level level = parser.parseMap(map);
+        Player newPlayer = players.createPacMan();
+        level.registerPlayer(newPlayer);
+        newPlayer.setDirection(Direction.EAST);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clyde.nextAiMove()).isNotIn(Direction.WEST);
+    }
+
+    @Test
+    void testNextAiMoveGetCloser() {
+        char[][] map = {"#######################".toCharArray(),
+                        "#                     #".toCharArray(),
+                        "#P               C    #".toCharArray(),
+                        "#                     #".toCharArray(),
+                        "#######################".toCharArray()};
+        Level level = parser.parseMap(map);
+        Player newPlayer = players.createPacMan();
+        level.registerPlayer(newPlayer);
+        newPlayer.setDirection(Direction.EAST);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clyde.nextAiMove()).isNotIn(Direction.NORTH, Direction.SOUTH, Direction.EAST);
+    }
+
+    @Test
+    void testNextAiMoveGetFarther() {
+        char[][] map = {"#############".toCharArray(),
+                        "#           #".toCharArray(),
+                        "#PC         #".toCharArray(),
+                        "#           #".toCharArray(),
+                        "#############".toCharArray()};
+        Level level = parser.parseMap(map);
+        Player newPlayer = players.createPacMan();
+        level.registerPlayer(newPlayer);
+        newPlayer.setDirection(Direction.EAST);
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clyde.nextAiMove()).isNotIn(Direction.WEST);
     }
 }
