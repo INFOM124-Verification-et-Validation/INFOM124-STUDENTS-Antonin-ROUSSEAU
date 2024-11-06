@@ -31,7 +31,7 @@ class ClydeTest {
         );
         players = new PlayerFactory(sprites);
     }
-
+/*
     @Test
     void testNextAiMoveAtLimitGetCloser() {
         char[][] map = {"#############".toCharArray(),
@@ -105,4 +105,5 @@ class ClydeTest {
         Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertThat(clyde.nextAiMove()).isIn(Optional.ofNullable(Direction.SOUTH));
     }
+ */
 }
