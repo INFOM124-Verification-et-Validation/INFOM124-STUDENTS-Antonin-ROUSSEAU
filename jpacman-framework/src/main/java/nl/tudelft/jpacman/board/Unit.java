@@ -71,7 +71,9 @@ public abstract class Unit {
      *            The square to occupy.
      */
     public void occupy(Square target) {
-        assert target != null;
+        if(target == null){
+            throw new NullPointerException();
+        }
 
         if (square != null) {
             square.remove(this);
@@ -89,7 +91,7 @@ public abstract class Unit {
             square.remove(this);
             square = null;
         }
-        assert square == null || square.getOccupants().contains(this);
+        assert square.getOccupants().contains(this);
     }
 
     /**

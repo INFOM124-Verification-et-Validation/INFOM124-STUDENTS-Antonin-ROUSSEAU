@@ -5,8 +5,6 @@ import java.util.List;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 
-import com.google.common.collect.ImmutableList;
-
 /**
  * A game with one player and a single level.
  *
@@ -25,11 +23,6 @@ public class SinglePlayerGame extends Game {
     private final Level level;
 
     /**
-     * Game Indicator
-     */
-    private boolean isGameActive;
-
-    /**
      * Create a new single player game for the provided level and player.
      *
      * @param player The player.
@@ -42,12 +35,11 @@ public class SinglePlayerGame extends Game {
         this.player = player;
         this.level = level;
         this.level.registerPlayer(player);
-        this.isGameActive = true;
     }
 
     @Override
     public List<Player> getPlayers() {
-        return ImmutableList.of(player);
+        return java.util.List.of(player);
     }
 
     @Override

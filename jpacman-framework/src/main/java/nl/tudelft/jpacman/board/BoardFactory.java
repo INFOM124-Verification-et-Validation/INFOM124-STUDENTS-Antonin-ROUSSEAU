@@ -36,7 +36,9 @@ public class BoardFactory {
      * @return A new board, wrapping a grid of connected cells.
      */
     public Board createBoard(Square[][] grid) {
-        assert grid != null;
+        if(grid == null){
+            throw new NullPointerException();
+        }
 
         Board board = new Board(grid);
 
