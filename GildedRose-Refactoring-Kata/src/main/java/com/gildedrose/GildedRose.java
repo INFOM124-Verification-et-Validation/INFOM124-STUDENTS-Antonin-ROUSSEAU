@@ -30,8 +30,7 @@ class GildedRose {
     private void updateSpecialCase(Item item){
         item.sellIn--;
         // Cancel if Sulfuras
-        if(item.quality >= 50) return;
-
+        if(item.quality > 50) return;
         int dropRate = (item.sellIn < 0) ? 2 : 1;
         if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
             updateBackstage(item);
