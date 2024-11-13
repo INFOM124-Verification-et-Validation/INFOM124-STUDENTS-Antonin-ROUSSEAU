@@ -9,11 +9,12 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+            UpdateFactory.get(item).update(item);
+
             /* ancienne méthode
             if(NonPerishables.isIn(item)) StockUpdate.updateSpecialCase(item);
             else StockUpdate.updateRotting(item);
-             */
-            UpdateFactory.get(item).update(item);
+            */
         }
     }
 }
