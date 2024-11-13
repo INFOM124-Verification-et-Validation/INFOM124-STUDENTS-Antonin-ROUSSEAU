@@ -1,6 +1,9 @@
 package com.gildedrose;
 
 public class StockUpdate {
+    private StockUpdate(){
+        super();
+    }
     public static void updateRotting(Item item){
         item.sellIn--;
         int dropRate = (item.sellIn < 0) ? 2 : 1;
