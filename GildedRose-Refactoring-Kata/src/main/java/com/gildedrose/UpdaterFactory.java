@@ -1,7 +1,7 @@
 package com.gildedrose;
 
-public class UpdateFactory {
-    private UpdateFactory(){
+public class UpdaterFactory {
+    private UpdaterFactory(){
         super();
     }
 

@@ -9,7 +9,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            UpdateFactory.get(item).update(item);
+            UpdaterFactory.get(item).update(item);
 
             /* ancienne méthode
             if(NonPerishables.isIn(item)) StockUpdate.updateSpecialCase(item);
